@@ -1,4 +1,4 @@
-package com.pelucky.danmu;
+package main.java.com.pelucky.danmu;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,11 +8,11 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pelucky.danmu.util.Danmu;
+import main.java.com.pelucky.danmu.util.Danmu;
 
 
 public class DanmuApp {
-    private static Logger logger = LoggerFactory.getLogger(DanmuApp.class);
+//    private static Logger logger = LoggerFactory.getLogger(DanmuApp.class);
     public static void main(String[] args) {
         Properties properties = new Properties();
         InputStream inputStream = null;
@@ -26,24 +26,34 @@ public class DanmuApp {
         String ltkid = null;
         String stk = null;
         try {
-            inputStream = DanmuApp.class.getClassLoader().getResourceAsStream("config.properties");
-            properties.load(inputStream);
-            danmu_server = properties.getProperty("danmu_server", "openbarrage.douyutv.com");
-            danmu_port = Integer.valueOf(properties.getProperty("danmu_port", "8601"));
-            auth_server = properties.getProperty("auth_server", "119.90.49.89");
-            auth_port = Integer.valueOf(properties.getProperty("auth_port", "8092"));
-            room_id = properties.getProperty("room_id");
-            username = properties.getProperty("username");
-            ltkid = properties.getProperty("ltkid");
-            stk = properties.getProperty("stk");
-        } catch (IOException e) {
+//            inputStream = DanmuApp.class.getResourceAsStream("config.properties");
+//            properties.load(inputStream);
+//            danmu_server = properties.getProperty("danmu_server", "openbarrage.douyutv.com");
+//            danmu_port = Integer.valueOf(properties.getProperty("danmu_port", "8601"));
+//            auth_server = properties.getProperty("auth_server", "119.90.49.89");
+//            auth_port = Integer.valueOf(properties.getProperty("auth_port", "8092"));
+//            room_id = properties.getProperty("room_id");
+//            username = properties.getProperty("username");
+//            ltkid = properties.getProperty("ltkid");
+//            stk = properties.getProperty("stk");
+
+            danmu_server = "openbarrage.douyutv.com";
+            danmu_port = 8601;
+            auth_server = "119.90.49.89";
+            auth_port = 8092;
+            room_id = "74751";
+            username = "39019270";
+            ltkid = "57277598";
+            stk = "5935dd7e014be08c";
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-                    logger.info(e.getMessage());
+                    System.out.println(e.getMessage());
+//                    logger.info(e.getMessage());
                 }
             }
         }
@@ -59,6 +69,7 @@ public class DanmuApp {
 
         // Auth server for send danmu
         danmu.authDanmu();
+        danmu.start();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

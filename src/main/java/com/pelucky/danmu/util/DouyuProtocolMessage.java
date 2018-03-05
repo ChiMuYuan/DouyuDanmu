@@ -1,4 +1,4 @@
-package com.pelucky.danmu.util;
+package  main.java.com.pelucky.danmu.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class DouyuProtocolMessage {
     private int[] end;
     private ByteArrayOutputStream byteArrayOutputStream;
     private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
-    private static Logger logger = LoggerFactory.getLogger(DouyuProtocolMessage.class);
+//    private static Logger logger = LoggerFactory.getLogger(DouyuProtocolMessage.class);
 
     public DouyuProtocolMessage() {
         byteArrayOutputStream = new ByteArrayOutputStream();
@@ -95,8 +95,10 @@ public class DouyuProtocolMessage {
                 try {
                     text += "%" + Integer.toHexString((receiveMsg[i] & 0x000000FF) | 0xFFFFFF00).substring(6);
                 } catch (StringIndexOutOfBoundsException e) {
-                    logger.info("String index out of range. receiveMsg: {}", receiveMsg[i]);
-                    logger.info(e.getMessage());
+                    System.out.println("String index out of range. receiveMsg: " + receiveMsg[i]);
+                    System.out.println(e.getMessage());
+//                    logger.info("String index out of range. receiveMsg: {}", receiveMsg[i]);
+//                    logger.info(e.getMessage());
                 }
             } else {
                 text += (char) receiveMsg[i];
@@ -131,8 +133,10 @@ public class DouyuProtocolMessage {
         try {
             decodedMessage = URLDecoder.decode(message, "utf-8");
         } catch (UnsupportedEncodingException e) {
-            logger.info("Decode error! message: {}", message);
-            logger.info(e.getMessage());
+            System.out.println("Decode error! message: " + message);
+            System.out.println(e.getMessage());
+//            logger.info("Decode error! message: {}", message);
+//            logger.info(e.getMessage());
         }
         decodedMessage = decode(decodedMessage);
         return decodedMessage;

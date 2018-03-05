@@ -1,13 +1,13 @@
-package com.pelucky.danmu.thread;
+package main.java.com.pelucky.danmu.thread;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pelucky.danmu.util.TcpSocketClient;
+import main.java.com.pelucky.danmu.util.TcpSocketClient;
 
 public class KeepaliveSender implements Runnable {
     private TcpSocketClient tcpSocketClient;
-    private Logger logger = LoggerFactory.getLogger(KeepaliveSender.class);
+//    private Logger logger = LoggerFactory.getLogger(KeepaliveSender.class);
 
     public KeepaliveSender(TcpSocketClient tcpSocketClient) {
         this.tcpSocketClient = tcpSocketClient;
@@ -21,7 +21,8 @@ public class KeepaliveSender implements Runnable {
             try {
                 Thread.sleep(40000);
             } catch (InterruptedException e) {
-                logger.info("Sleep interrupted!");
+                System.out.println("Sleep interrupted!");
+//                logger.info("Sleep interrupted!");
                 e.printStackTrace();
             }
         }

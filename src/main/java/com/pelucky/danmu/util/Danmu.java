@@ -1,4 +1,4 @@
-package com.pelucky.danmu.util;
+package main.java.com.pelucky.danmu.util;
 
 import java.security.MessageDigest;
 import java.util.UUID;
@@ -6,13 +6,13 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pelucky.danmu.thread.KeepaliveSender;
-import com.pelucky.danmu.thread.ReceiveData;
+import main.java.com.pelucky.danmu.thread.KeepaliveSender;
+import main.java.com.pelucky.danmu.thread.ReceiveData;
 
 public class Danmu {
     TcpSocketClient tcpSocketClient;
     private TcpSocketClient tcpSocketClientAuth;
-    private Logger logger = LoggerFactory.getLogger(Danmu.class);
+//    private Logger logger = LoggerFactory.getLogger(Danmu.class);
     private KeepaliveSender keepaliveSender;
     private ReceiveData receiveData;
     private ReceiveData receiveDataAuth;
@@ -39,7 +39,8 @@ public class Danmu {
         tcpSocketClient.sendData("type@=loginreq/roomid@=" + roomID + "/");
         tcpSocketClient.sendData("type@=joingroup/rid@=" + roomID + "/gid@=-9999/");
         sendKeepalive();
-        logger.info("Danmu start succefully!");
+        System.out.println("Danmu start succefully!");
+//        logger.info("Danmu start succefully!");
     }
 
     private void sendKeepalive() {
@@ -84,7 +85,8 @@ public class Danmu {
 
     public void sendDanmu(String message) {
         message = DouyuProtocolMessage.encodeMessage(message);
-        logger.info("Send message: {}", message);
+        System.out.println("Send message: " + message);
+//        logger.info("Send message: {}", message);
         tcpSocketClientAuth.sendData("type@=chatmessage/receiver@=0/content@=" + message
                 + "/scope@=/col@=0/pid@=/p2p@=0/nc@=0/rev@=0/ifs@=0/");
     }

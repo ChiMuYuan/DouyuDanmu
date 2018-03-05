@@ -1,4 +1,4 @@
-package com.pelucky.danmu.thread;
+package main.java.com.pelucky.danmu.thread;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -7,11 +7,11 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.pelucky.danmu.util.TcpSocketClient;
+import main.java.com.pelucky.danmu.util.TcpSocketClient;
 
 public class ReceiveData implements Runnable {
     private TcpSocketClient tcpSocketClient;
-    private Logger logger = LoggerFactory.getLogger(ReceiveData.class);
+//    private Logger logger = LoggerFactory.getLogger(ReceiveData.class);
 
     public ReceiveData(TcpSocketClient tcpSocketClient) {
         this.tcpSocketClient = tcpSocketClient;
@@ -31,8 +31,10 @@ public class ReceiveData implements Runnable {
                 byte[] receiveMsg = byteOutput.toByteArray();
                 tcpSocketClient.getDouyuProtocolMessage().receivedMessageContent(receiveMsg);
             } catch (IOException e) {
-                logger.info("Receive IO error!");
-                logger.info(e.getMessage());
+                System.out.println("Receive IO error!");
+                System.out.println(e.getMessage());
+//                logger.info("Receive IO error!");
+//                logger.info(e.getMessage());
             }
         }
     }
